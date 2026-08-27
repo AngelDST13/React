@@ -1,19 +1,14 @@
-// Importación de componentes de React Router para manejar las rutas
 import { Routes, Route } from 'react-router-dom';
-
-// Importación de las páginas principales
 import Inicio from './pages/Inicio';
-import Servicios from './pages/Servicios';
+import QuienesSomos from './pages/QuienesSomos';
+import Contacto from './pages/Contacto';
 
 function App() {
   return (
-    // Declaración de las rutas de la aplicación (SPA)
     <Routes>
-      {/* Ruta principal que carga la página de Inicio */}
       <Route path="/" element={<Inicio />} />
-
-      {/* Ruta secundaria que carga la página de Servicios */}
-      <Route path="/servicios" element={<Servicios />} />
+      <Route path="/quienes-somos" element={<QuienesSomos />} />
+      <Route path="/contacto" element={<Contacto />} />
     </Routes>
   );
 }
