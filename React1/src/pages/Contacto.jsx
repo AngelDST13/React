@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Header from '../components/Header';
 
 function Contacto() {
-  const [formData, setFormData] = useState({ nombre: '', email: '', mensaje: '' });
+  const [formData, setFormData] = useState({ nombre: '', email: '', telefono: '', mensaje: '' });
   const [enviado, setEnviado] = useState(false);
 
   const handleSubmit = (e) => {
@@ -20,7 +20,7 @@ function Contacto() {
 
           {enviado ? (
             <div style={{ background: 'rgba(34, 197, 94, 0.2)', border: '1px solid #22c55e', color: '#4ade80', padding: '1rem', borderRadius: '8px' }}>
-              ¡Gracias por contactarnos, {formData.nombre}! Te responderemos pronto.
+              ¡Gracias por contactarnos, {formData.nombre}! Te responderemos muy pronto al {formData.telefono}.
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
@@ -29,6 +29,7 @@ function Contacto() {
                 type="text" 
                 className="glass-input" 
                 required 
+                placeholder="Ej. Juan Pérez"
                 value={formData.nombre}
                 onChange={(e) => setFormData({...formData, nombre: e.target.value})}
               />
@@ -38,8 +39,19 @@ function Contacto() {
                 type="email" 
                 className="glass-input" 
                 required 
+                placeholder="ejemplo@correo.com"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
+              />
+
+              <label style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>Número de teléfono / WhatsApp</label>
+              <input 
+                type="tel" 
+                className="glass-input" 
+                required 
+                placeholder="Ej. 8888-8888"
+                value={formData.telefono}
+                onChange={(e) => setFormData({...formData, telefono: e.target.value})}
               />
 
               <label style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>Mensaje o consulta</label>
@@ -47,6 +59,7 @@ function Contacto() {
                 rows="4" 
                 className="glass-input" 
                 required 
+                placeholder="Escribe tu consulta aquí..."
                 value={formData.mensaje}
                 onChange={(e) => setFormData({...formData, mensaje: e.target.value})}
               ></textarea>
