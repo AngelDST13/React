@@ -11,9 +11,11 @@ function Inicio() {
 
   return (
     <div>
+      {/* 1. Componente Navegación */}
       <Header />
+      
       <main style={{ maxWidth: '900px', margin: '2rem auto', padding: '0 1rem' }}>
-        {/* Componente reutilizable 1: Alerta de Estado */}
+        {/* 2. Componente Estado/Banner */}
         <AlertaEstado mensaje="Taller abierto - Atendiendo consultas y citas en línea" tipo="exito" />
 
         <div className="glass-card" style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -23,7 +25,7 @@ function Inicio() {
 
         <h2 style={{ marginBottom: '1rem' }}>Nuestros Servicios</h2>
         
-        {/* Componente reutilizable 2: CardServicio con map() y props */}
+        {/* 3. Componente CardServicio renderizado dinámicamente */}
         {servicios.map((s) => (
           <CardServicio 
             key={s.id} 
@@ -33,6 +35,11 @@ function Inicio() {
           />
         ))}
       </main>
+
+      {/* Pie de página institucional */}
+      <footer style={{ textAlign: 'center', padding: '1.5rem', color: '#64748b', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+        © AutoTaller Pro - Todos los derechos reservados.
+      </footer>
     </div>
   );
 }
