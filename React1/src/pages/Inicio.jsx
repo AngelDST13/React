@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import CardServicio from '../components/CardServicio';
+import AlertaEstado from '../components/AlertaEstado';
 
 function Inicio() {
   const servicios = [
@@ -12,14 +13,24 @@ function Inicio() {
     <div>
       <Header />
       <main style={{ maxWidth: '900px', margin: '2rem auto', padding: '0 1rem' }}>
+        {/* Componente reutilizable 1: Alerta de Estado */}
+        <AlertaEstado mensaje="Taller abierto - Atendiendo consultas y citas en línea" tipo="exito" />
+
         <div className="glass-card" style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Servicio Automotriz de Alta Calidad</h1>
           <p style={{ color: '#94a3b8' }}>Mantenimiento profesional con tecnología de vanguardia y atención personalizada.</p>
         </div>
 
         <h2 style={{ marginBottom: '1rem' }}>Nuestros Servicios</h2>
+        
+        {/* Componente reutilizable 2: CardServicio con map() y props */}
         {servicios.map((s) => (
-          <CardServicio key={s.id} nombre={s.nombre} descripcion={s.descripcion} precio={s.precio} />
+          <CardServicio 
+            key={s.id} 
+            nombre={s.nombre} 
+            descripcion={s.descripcion} 
+            precio={s.precio} 
+          />
         ))}
       </main>
     </div>
