@@ -5,6 +5,17 @@ function Contacto() {
   const [formData, setFormData] = useState({ nombre: '', email: '', telefono: '', mensaje: '' });
   const [enviado, setEnviado] = useState(false);
 
+  // Manejador específico para el campo de teléfono
+  const handleTelefonoChange = (e) => {
+    // Reemplaza cualquier carácter que NO sea un número (\D = no dígitos)
+    const soloNumeros = e.target.value.replace(/\D/g, '');
+    
+    // Limita la longitud máxima a 8 dígitos
+    if (soloNumeros.length <= 8) {
+      setFormData({ ...formData, telefono: soloNumeros });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setEnviado(true);
@@ -20,7 +31,7 @@ function Contacto() {
 
           {enviado ? (
             <div style={{ background: 'rgba(34, 197, 94, 0.2)', border: '1px solid #22c55e', color: '#4ade80', padding: '1rem', borderRadius: '8px' }}>
-              ¡Gracias por contactarnos, {formData.nombre}! Te responderemos muy pronto al {formData.telefono}.
+              ¡Gracias por contactarnos, {formData.nombre}! Te responderemos muy pronto al número {formData.telefono}.
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
@@ -44,14 +55,17 @@ function Contacto() {
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
 
-              <label style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>Número de teléfono / WhatsApp</label>
+              <label style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>Número de teléfono (8 dígitos)</label>
               <input 
-                type="tel" 
+                type="text" 
+                inputMode="numeric"
                 className="glass-input" 
                 required 
-                placeholder="Ej. 8888-8888"
+                minLength="8"
+                maxLength="8"
+                placeholder="Ej. 88888888"
                 value={formData.telefono}
-                onChange={(e) => setFormData({...formData, telefono: e.target.value})}
+                onChange={handleTelefonoChange}
               />
 
               <label style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>Mensaje o consulta</label>
